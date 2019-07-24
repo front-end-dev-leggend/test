@@ -477,7 +477,7 @@
 
                               </div>
                               <div class="vx-col md:w-1/6 w-full mt-5">
-                                   <vs-button class="w-full" @click="save()">{{$t('edit')}}</vs-button>
+                                   <vs-button  ref="loadableButton" id="button-with-loading" class="vs-con-loading__container" vslor="primary" @click="save()" >{{$t('edit')}}</vs-button>
                               </div>
                             </div>
                           </div>
@@ -632,24 +632,48 @@ export default {
 
               this.provinces=JSON.parse(JSON.stringify(result.data).replace(/\:null/gi, "\:\"\""));
               console.log("province",this.provinces);
-
+            }else{
+              this.$swal(result.message,'','error')
             }
           },err=>{
+            this.$swal('connection  error','','error');
             console.log(err);
           })
           service.getData("get_operating").then((result)=>{
             console.log(result);
             if(!result.code){
               this.departments=result.data;
+            }else{
+              this.$swal(result.message,'','error');
             }
+       },err=>{
+         this.$swal('connection error','','error')
        })
    },
    methods: {
         save(){
+          this.$vs.loading({
+                background: this.backgroundLoading,
+                color: this.colorLoading,
+                container: "#button-with-loading",
+                scale: 0.45
+          })
           service.postData("update_vehicle",this.vehicle).then((result)=>{
+            this.$vs.loading.close("#button-with-loading > .con-vs-loading")
             if(!result.code){
               this.isSidebarActiveLocal=false;
+            }else{
+              this.isSidebarActiveLocal=false;
+              this.$swal(result.message,'','error').then((result)=>{
+                this.isSidebarActive=true;
+              });
             }
+          },err=>{
+            this.isSidebarActiveLocal=false;
+            this.$vs.loading.close("#button-with-loading > .con-vs-loading")
+            this.$swal('connection error','','error').then((result)=>{
+              this.isSidebarActive=true;
+            });
           })
         },
         forceRerender() {
@@ -727,6 +751,8 @@ export default {
               if(val.amphur){
                 this.tambons=this.locations.filter((item)=>item.en_amphur==val.amphur);
               }
+            }else{
+              this.$swal(result.message,'','error')
             }
 
           },err=>{
@@ -741,8 +767,11 @@ export default {
             if(!result.code){
               this.locations=result.data;
 
+            }else{
+              this.$swal(result.message,'','error');
             }
           },err=>{
+            this.$swal('connection errr','','error');
             console.log(err);
           })
         },
@@ -812,8 +841,5 @@ button{
     color: #626262;
     width: 100%;
   }
-   .error{
-    color:red;
-    font-size:50%;
-  }
+
 </style>

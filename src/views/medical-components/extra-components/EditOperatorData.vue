@@ -557,19 +557,30 @@ export default {
        if(!result.code){
          this.provinces=result.data;
 
+       }else{
+         this.$swal(result.message,'','error');
        }
      },err=>{
+       this.$swal('connection error','','error')
        console.log(err);
      })
      service.getData("get_position").then((result)=>{
        if(!result.code){
          this.positions=result.data;
+       }else{
+          this.$swal(result.message,'','error');
        }
+     },err=>{
+       this.$swal(result.message,'','error');
      })
      service.getData("get_operating").then((result)=>{
        if(!result.code){
          this.departments=result.data;
+       }else{
+         this.$swal(result.message,'','error');
        }
+     },err=>{
+         this.$swal(result.message,'','error');
      })
     // service.postData("test",{name:"phaney"}).then((result)=>{
     //   console.log(result);
@@ -641,12 +652,20 @@ export default {
                   this.addNewDataSidebar=false;
                   this.$emit('closeSidebar');
                 }else{
-
+                  this.isSidebarActiveLocal=false;
+                  this.$swal(result.message,'','error').then((result)=>{
+                    this.isSidebarActive=true;
+                  })
                 }
             },500)
             console.log(result);
 
           },err=>{
+            this.isInvalid=false;
+            this.$vs.loading.close("#button-with-loading > .con-vs-loading")
+              this.$swal('connection error','','error').then((result)=>{
+                this.isSidebarActive=true;
+              });
             console.log(err);
           })
         }
@@ -736,8 +755,11 @@ export default {
           service.getExternalData('/get_location?province='+val).then((result)=>{
             if(!result.code){
               this.locations=result.data;
+            }else{
+              this.$swal(result.message,'','error');
             }
           },err=>{
+            this.$swal('connection error','','error')
             console.log(err);
           })
         },
@@ -747,8 +769,11 @@ export default {
           service.getExternalData('/get_location?province='+val).then((result)=>{
             if(!result.code){
               this.now_locations=result.data;
+            }else{
+              this.$swal(result.message,'','error');
             }
           },err=>{
+            this.$swal('connection error','','error');
             console.log(err);
           })
         },
@@ -822,8 +847,5 @@ button{
     color: #626262;
     width: 100%;
   }
-   .error{
-    color:red;
-    font-size:50%;
-  }
+
 </style>

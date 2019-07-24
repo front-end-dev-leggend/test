@@ -46,5 +46,75 @@ export default {
           reject(err);
         })
       })
-    }
+    },
+    prefixs:[
+      {id:1,th:"นาย",en:"Mr"},
+      {id:2,th:"นางสาว",en:"Miss"}
+    ],
+    religions:[
+      {id:1,th:"ศาสนาพุทธ",en:"Buddhism"},
+      {id:2,th:"ศาสนาอิสลาม",en:"Islam"},
+      {id:3,th:"ศาสนาฮินดู",en:"Hindu"},
+      {id:4,th:"ศาสนาคริสต์",en:"Christ"},
+      {id:5,th:"อื่นๆ",en:"Other"}
+    ],
+    blood_groups:[
+      {value:"",text:""},
+      {value:1,text:"A"},
+      {value:2,text:"B"},
+      {value:3,text:"O"},
+      {value:4,text:"AB"},
+      {value:5,text:"A+"},
+      {value:6,text:"B+"},
+      {value:7,text:"O+"},
+      {value:8,text:"AB+"},
+      {value:9,text:"A-"},
+      {value:10,text:"B-"},
+      {value:11,text:"O-"},
+      {value:12,text:"AB-"}
+    ],
+    treeatment_rights:[
+      {value:"",text:""},
+      {value:1,text:"ไม่มีหลักประกัน"},
+      {value:2,text:"ประกันสุขภาพถ้วนหน้า"},
+      {value:3,text:"ข้าราชการ"},
+      {value:4,text:"รัฐวิสาหกิจ"},
+      {value:5,text:"ประกันสังคม"},
+      {value:6,text:"ประกันชีวิต"}
+    ],
+    under_status:[
+      {value:"",text:""},
+      {value:0,text:"ในสังกัด"},
+      {value:1,text:"นอกสังกัด"}
+    ],
+    hospital_types:[
+      {value:"",text:""},
+      {value:0,text:"โรงพยาบาลทั่วไป"},
+      {value:1,text:"โรงพยาบาลเฉพาะทาง"}
+    ],
+    congenital_diseases:[
+      "เบาหวาน","ความดันโลหิตสูง","หัวใจ","หอบหืด","โรคไต","โรคมะเร็ง","อื่นๆ"
+    ],
+    serious_illness_types:[
+      "อุบัติเหตุ","โรคร้ายแรง","ไม่มี"
+    ],
+    reporter_type: [
+      { id: 1, value: "reported_from_civil" },
+      { id: 2, value: "narenlet_operation_unit" },
+      { id: 3, value: "ems" },
+      { id: 4, value: "voluteer" },
+      { id: 5, value: "etc" },
+    ],
+    how_to_report:[
+      { id: 1, value:"talkie_walkie" },
+      { id: 2, value:"tel_1646" },
+      { id: 3, value:"tel_1669" },
+      { id: 4, value:"etc" },
+    ],
+    event_type:[
+      { id: 1, value:"sick" },
+      { id: 2, value:"traffic_accident" },
+      { id: 3, value:"other_accident" },
+      { id: 4, value:"disaster" },
+    ]
 }

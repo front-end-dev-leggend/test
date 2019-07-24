@@ -1,0 +1,17 @@
+console.log()
+      if(this.congenital_diseases.indexOf(this.newPatient..congenital_diseas)==-1&&this.newPatient..congenital_diseas!=""){
+          this.other_congenital_diseas=this.newPatient..congenital_diseas.substring(5,this.newPatient..congenital_diseas.legnth);
+          this.newPatient.congenital_diseas="อื่นๆ";
+
+      }
+      alert(this.newPatient.serious_illness_type);
+      if(this.newPatient.serious_illness_type!="ไม่มี"){
+
+        if(this.newPatient.serious_illness_type.substr(10)=="อุบัติเหตุ"){
+          this.detail=this.newPatient.serious_illness_type.substring(10,this.newPatient.serious_illness_type.length);
+          this.newPatient.serious_illness_type="อุบัติเหตุ"
+        }else if(this.newPatient.serious_illness_type.substr(10)=="โรคร้ายแรง"){
+             this.detail=this.newPatient.serious_illness_type.substring(10,this.newPatient.serious_illness_type.length);
+             this.newPatient.serious_illness_type="โรคร้ายแรง"
+        }
+      }

@@ -17,7 +17,7 @@ export default {
     operation_unit:"Operating Unit",
     proffessional:"Proffessional",
     pharmacy:"Pharmacy",
-    valunteer:"Valunteer",
+    valunteer:"Volunteer",
     notification:"Notification",
     work:"Work",
     manage:"Manage",
@@ -40,7 +40,7 @@ export default {
     order:"order",
     id:"ID",
     name_surname:"name-surname",
-    department:"deparment",
+    department:"operating unit",
     view_edit_delete:"view/edit/delete",
     possition:"possition",
     prefix:"Prefix",
@@ -259,7 +259,27 @@ export default {
     edit_date:"วันที่แก้ไขข้อมูล",
     data_status:"สถานะข้อมูล",
     source_data:"แหล่งข้อมูล",
-    outside_data_reference:"เลขที่อ้างอิงจากแหล่งข้อมูลภายนอก"
+    outside_data_reference:"เลขที่อ้างอิงจากแหล่งข้อมูลภายนอก",
+    department_:"สังกัดหน่วยงาน",
+    zone_bangkok:"พื้นที่ตามกำหนดของกทม",
+    unit_type:"ประเภทหน่วย",
+    unit_size:"ลักษณะหน่วย",
+    unit_status:"สถานะ",
+    employee_number:"จำนวนบุคลกร",
+    ambulance_number:"จำนวนรถพยาบาล",
+    manager_name:"ชื่อผู้ประสานประจำหน่วย",
+    lat:"ละติจูด",
+    lon:"ลองจิจูด",
+
+    delete_vehicle_title:"คุณต้องการลบข้อมูลยานภาหนะนี้ใช่หรือไหม?",
+    delete_vehicle_text:"ข้อมูลลบแล้วไม่สามารถย้อนกลับได้",
+    delete_operating_unit_title:"คุณต้องการลบข้อมูลหน่วยปฏิบัติงานนี้ใช่หรือไหม?",
+
+    volunteer_data:"ข้อมูลอาสาสมัคร",
+    volunteer_register:"ขึ้นทะเบียนอาสามัคร",
+    tambon_amphur_province:"ที่อยู่ปัจจุบัน (ตำบล/อำเภอ/จังหวัด)",
+    delete_volunteer_title:"คุณต้องการลบข้อมูลอาสาสมัครนี้ใช่หรือไหม?",
+    choose_position:"เลือกตำแหน่งบนแผ่นที่"
   }
 
 }

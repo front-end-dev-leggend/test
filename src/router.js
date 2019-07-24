@@ -103,18 +103,33 @@ const router = new Router({
               {
                     path: '/registration/pharmacy',
                     name: 'dashboardAnalytics',
-                    component: () => import('./views/DashboardECommerce.vue'),
+                    component: () => import('./views/medical-components/pharmacy.vue'),
                     meta: {
                         rule: 'editor'
                     }
                 },{
-                    path: '/registration/valunteer',
+                    path: '/registration/volunteer',
                     name: 'dashboardAnalytics',
-                    component: () => import('./views/DashboardECommerce.vue'),
+                    component: () => import('./views/medical-components/volunteer.vue'),
                     meta: {
                         rule: 'editor'
                     }
                 },{
+                  path: '/registration/patient_data',
+                  name: 'dashboardAnalytics',
+                  component: () => import('./views/medical-components/patient.vue'),
+                  meta: {
+                      rule: 'editor'
+                  }
+                },{
+                  path: '/registration/hospital_data',
+                  name: 'dashboardAnalytics',
+                  component: () => import('./views/medical-components/hostpital.vue'),
+                  meta: {
+                      rule: 'editor'
+                  }
+                },
+                {
                       path: '/operation/notification',
                       name: 'dashboardAnalytics',
                       component: () => import('./views/DashboardECommerce.vue'),
@@ -138,7 +153,7 @@ const router = new Router({
                   },{
                     path: '/operation/emergency',
                     name: 'dashboardAnalytics',
-                    component: () => import('./views/DashboardECommerce.vue'),
+                    component: () => import('./views/medical-components/operation/emergency_reported.vue'),
                     meta: {
                         rule: 'editor'
                     }

@@ -3,7 +3,8 @@
 
     <edit-operator-data :isSidebarActive="addNewDataSidebar" :operator="edit_operator" @closeSidebar="addNewDataSidebar = false" />
     <vx-card>
-        <vs-tabs>
+        <!-- <pre>{{x}}</pre> -->
+        <vs-tabs >
             <vs-tab :label="$t('operator_data')">
                <div class="mt-3">
                  <vs-table pagination max-items="10" search :data="operators">
@@ -294,7 +295,7 @@
                     <div class="vx-col w-full mt-5">
 
                        <vs-button color="danger" type="border">{{$t('cancel')}}</vs-button>
-                      <vs-button color="success" type="border" @click="save">{{$t('save')}}</vs-button>
+                      <vs-button ref="loadableButton" id="button-with-loading" class="vs-con-loading__container" vslor="primary" @click="save">{{$t('save')}}</vs-button>
                     </div>
                 </div>
               </div>
@@ -347,38 +348,17 @@ export default {
   },
    data(){
       return {
+
         edit_operator:{},
-        prefixs:[
-          {id:1,th:"นาย",en:"Mr"},
-          {id:2,th:"นางสาว",en:"Miss"}
-        ],
-        religions:[
-          {id:1,th:"ศาสนาพุทธ",en:"Buddhism"},
-          {id:2,th:"ศาสนาอิสลาม",en:"Islam"},
-          {id:3,th:"ศาสนาฮินดู",en:"Hindu"},
-          {id:4,th:"ศาสนาคริสต์",en:"Christ"},
-          {id:5,th:"อื่นๆ",en:"Other"}
-        ],
+        prefixs:service.prefixs,
+
         education_bgs:[
           {id:1,th:"ปริญญาตรี",en:"Bachelor Degree"},
           {id:2,th:"ปริญญาโท",en:"Master Degree"},
           {id:3,th:"ปริญญาเอก",en:"Doctor of Philosophy"}
-        ]
-        ,
-        blood_groups:[
-          {value:1,text:"A"},
-          {value:2,text:"B"},
-          {value:3,text:"O"},
-          {value:4,text:"AB"},
-          {value:5,text:"A+"},
-          {value:6,text:"B+"},
-          {value:7,text:"O+"},
-          {value:8,text:"AB+"},
-          {value:9,text:"A-"},
-          {value:10,text:"B-"},
-          {value:11,text:"O-"},
-          {value:12,text:"AB-"}
         ],
+        religions:service.religions,
+        blood_groups:service.blood_groups,
         addNewDataSidebar: false,
         image:"",
          url:"",
@@ -408,6 +388,7 @@ export default {
       operators:[]
       }
    },
+
    computed:{
      lang(){
        return this.$i18n.locale;
@@ -572,7 +553,11 @@ export default {
        console.log(result);
        if(!result.code){
          this.departments=result.data;
+       }else{
+         this.$swal(result.message,'','error')
        }
+     },err=>{
+       this.$swal('connection error','','error')
      })
     // service.postData("test",{name:"phaney"}).then((result)=>{
     //   console.log(result);
@@ -591,6 +576,12 @@ export default {
         this.submitted=true;
 
         if(!this.isInvalid){
+          this.$vs.loading({
+                background: this.backgroundLoading,
+                color: this.colorLoading,
+                container: "#button-with-loading",
+                scale: 0.45
+          })
           var data={
               department:this.department,
               position:this.position,
@@ -628,14 +619,17 @@ export default {
               remark:this.remark
           }
           service.postData("/add_operator",data).then((result)=>{
+            this.$vs.loading.close("#button-with-loading > .con-vs-loading")
             console.log(result);
             if(!result.code){
               this.getOperator();
               this.forceRerender();
             }else{
-
+              this.$swal(result.message,'','error');
             }
           },err=>{
+            this.$vs.loading.close("#button-with-loading > .con-vs-loading")
+            this.$swal('connection error','','error')
             console.log(err);
           })
         }
@@ -661,7 +655,8 @@ export default {
 
           }
         }).then((result) => {
-          if(!result.code){
+          if(result.value){
+             if(!result.value.code){
                 this.$swal(
                   this.$t('deleted'),
                   '',
@@ -669,7 +664,10 @@ export default {
                 ).then(result=>{
                    this.getOperator();
                 })
+              }else{
+                this.$swal(result.vaule.message,'','error');
               }
+          }
 
         })
       },

@@ -293,8 +293,11 @@ export default {
             this.provinces=JSON.parse(JSON.stringify(result.data).replace(/\:null/gi, "\:\"\""));
             console.log("province",this.provinces);
 
+          }else{
+            this.$swal(result.message,'','error');
           }
         },err=>{
+          this.$swal('connection error','','error');
           console.log(err);
         })
    },
@@ -336,17 +339,24 @@ export default {
           if(!result.code){
               setTimeout(()=>{
                   this.$vs.loading.close("#button-with-loading > .con-vs-loading")
-                  if(!result.code){
-                    this.addNewDataSidebar=false;
-                    this.$emit('closeSidebar');
-                  }else{
-
-                  }
+                  this.isSidebarActiveLocal=false;
               },500)
               console.log(result);
+            }else{
+                this.isSidebarActiveLocal=false;
+                this.$swal(result.message,'','error').then((result)=>{
+
+                  this.$vs.loading.close("#button-with-loading > .con-vs-loading")
+                  this.isSidebarActive=true;
+                  // this.addNewDataSidebar=false;
+                });
             }
           },err=>{
-
+            this.$vs.loading.close("#button-with-loading > .con-vs-loading")
+            this.isSidebarActiveLocal=false;
+            this.$swal('connectio  error','','error').then((result)=>{
+              this.isSidebarActive=true;
+            });
           })
 
         }
@@ -357,12 +367,13 @@ export default {
         operating_unit (val){
 
            console.log(val);
-
+          val.unit_size=parseInt(val.unit_size);
+          val.unit_status=parseInt(val.unit_status);
           this.operating_unit_name=val.operating_unit_name;
           this.department=val.department,this.zone=val.zone;
           this.unit_type=val.unit_type;
-          this.unit_size=val.unit_size;
-          this.unit_status=val.unit_status,
+          this.unit_size=val.unit_size!=""?val.unit_size+2:val.unit_size;
+          this.unit_status=val.unit_status!=""?val.unit_status+4:val.unit_status,
           this.address=val.address;
           this.tambon=val.tambon;
           this.amphur=val.amphur;
@@ -378,7 +389,8 @@ export default {
           if(this.lat!=""){
               this.isSelectCoordinate=true
             }
-            this.overlayCoordinate=[this.lon,this.lat]
+            this.overlayCoordinate=[this.lon,this.lat];
+            this.center=this.overlayCoordinate;
           this.forceRerender() ;
         },
         locale(val) {
@@ -399,8 +411,11 @@ export default {
             if(!result.code){
               this.locations=result.data;
 
+            }else{
+              this.$swal(result.message,'','error');
             }
           },err=>{
+            this.$swal('connection error','','error');
             console.log(err);
           })
         },
@@ -473,8 +488,5 @@ button{
     color: #626262;
     width: 100%;
   }
-   .error{
-    color:red;
-    font-size:50%;
-  }
+
 </style>

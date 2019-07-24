@@ -11,7 +11,7 @@
                     <template slot="thead">
                       <vs-th sort-key="id" width="100px">{{$t('id')}}</vs-th>
                       <vs-th sort-key="zone">{{$t('zone')}}</vs-th>
-                      <vs-th sort-key="unit_name">{{$t('unit_name')}}</vs-th>
+                      <vs-th sort-key="operating_unit_name">{{$t('operating_unit_name')}}</vs-th>
                       <vs-th sort-key="department">{{$t('department_')}}</vs-th>
                       <vs-th sort-key="unit_type">{{$t('unit_type')}}</vs-th>
                       <vs-th sort-key="tel">{{$t('tel')}}</vs-th>
@@ -212,7 +212,7 @@
                     <div class="vx-col w-full mt-5">
 
                        <vs-button color="danger" type="border">{{$t('cancel')}}</vs-button>
-                      <vs-button color="success" type="border" @click="save">{{$t('save')}}</vs-button>
+                      <vs-button ref="loadableButton" id="button-with-loading" class="vs-con-loading__container" vslor="primary" @click="save">{{$t('save')}}</vs-button>
                     </div>
                 </div>
               </div>
@@ -271,7 +271,7 @@ export default {
    data(){
       return {
         // operatoring_units:[],
-           zoom: 8,
+        zoom: 8,
         center: [100.6037284, 13.6768896],
         rotation: 0,
         isSelectCoordinate:false,
@@ -362,6 +362,7 @@ export default {
          this.$swal(result.message,'','error')
        }
      },err=>{
+       this.$swal('connection error','','error')
        console.log(err);
      })
    },
@@ -383,14 +384,27 @@ export default {
         this.submitted=true;
         if(!this.isInvalid){
           alert(1);
+          this.$vs.loading({
+                background: this.backgroundLoading,
+                color: this.colorLoading,
+                container: "#button-with-loading",
+                scale: 0.45
+          })
           service.postData("add_operating_unit",{
             operating_unit_name:this.operating_unit_name,department:this.department,zone:this.zone,unit_type:this.unit_type,unit_size:this.unit_size-2>0?this.unit_size-2:"",unit_status:this.unit_status-4>0?this.unit_status-4:"",address:this.address,tambon:this.tambon,amphur:this.amphur,province:this.province,postcode:this.postcode,tel:this.tel,employee_number:this.employee_number,ambulance_number:this.ambulance_number,manager_name:this.manager_name,remark:this.remark,lat:this.lat,lon:this.lon
           }).then((result)=>{
+            this.$vs.loading.close("#button-with-loading > .con-vs-loading")
             this.isSelectCoordinate=false;
-            this.getData();
-            this.forceRerender();
+            if(!result.code){
+              this.getData();
+              this.forceRerender();
+            }else{
+              this.$swal(result.message,'','error')
+            }
           },err=>{
+              this.$swal('connection error','','error')
 
+              this.$vs.loading.close("#button-with-loading > .con-vs-loading")
           })
         }
       },
@@ -425,7 +439,8 @@ export default {
 
           }
         }).then((result) => {
-          if(result.code===false){
+          if(result.value){
+            if(!result.value.code){
                 this.$swal(
                   this.$t('deleted'),
                   '',
@@ -434,9 +449,10 @@ export default {
                     this.getData();
                })
               }else{
-                 this.$swal(result.message,'','error')
+                 this.$swal(result.value.message,'','error')
               }
 
+          }
         })
       },
    },

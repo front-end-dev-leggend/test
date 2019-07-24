@@ -52,21 +52,48 @@ export default [
         slug: "Operation Unit",
         i18n: "operation_unit",
       }, {
-        url: '/registration/proffessional',
-        name: "Proffessional",
-        slug: "Proffessional",
-        i18n: "proffessional",
-      }, {
         url: '/registration/pharmacy',
         name: "Pharmacy",
         slug: "Pharmacy",
         i18n: "pharmacy",
       }, {
-        url: '/registration/valunteer',
+        url: '/registration/volunteer',
         name: "Valunteer",
         slug: "Valunteer",
         i18n: "valunteer",
+      },{
+        url: '/registration/patient_data',
+        name: "Patient Data",
+        slug: "Patient Data",
+        i18n: "patient_data",
+      },{
+        url: '/registration/hospital_data',
+        name: "Hospital Data",
+        slug: "Hospital Data",
+        i18n: "hospital_data",
+      }
+    ]
+  },
+  {
+    url: null,
+    name: "Setting",
+    slug: "Setting",
+    icon: "FileTextIcon",
+
+    i18n: "Setting",
+    submenu: [
+      {
+        url: '/setting/screening_setting',
+        name: "screening settinging",
+        slug: "eCommerceShop",
+        i18n: "screening_setting",
       },
+      {
+          url: '/setting/operation_advice',
+          name: "operation advice",
+          slug: "Vehicle",
+          i18n: "operation_advice",
+      }
     ]
   },
   {

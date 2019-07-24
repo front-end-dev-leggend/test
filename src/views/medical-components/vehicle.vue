@@ -520,7 +520,7 @@
 
                               </div>
                               <div class="vx-col md:w-1/6 w-full mt-5">
-                                   <vs-button class="w-full" @click="save()">{{$t('save')}}</vs-button>
+                                   <vs-button ref="loadableButton" id="button-with-loading" class="vs-con-loading__container" vslor="primary"  @click="save()">{{$t('save')}}</vs-button>
                               </div>
                             </div>
                           </div>
@@ -559,12 +559,14 @@
     color: #626262;
     width: 100%;
   }
+
+</style>
+<style>
    .error{
     color:red;
      font-size:80%;
   }
 </style>
-
 
 <script>
 import Datepicker from 'vuejs-datepicker';
@@ -686,15 +688,22 @@ export default {
          this.provinces=JSON.parse(JSON.stringify(result.data).replace(/\:null/gi, "\:\"\""));
          console.log("province",this.provinces);
 
+       }else{
+         this.$swal(result.message,'','error')
        }
      },err=>{
+       this.$swal(result.message,'','error')
        console.log(err);
      })
      service.getData("get_operating").then((result)=>{
        console.log(result);
        if(!result.code){
          this.departments=result.data;
+       }else{
+            this.$swal(result.message,'','error')
        }
+     },err=>{
+       this.$swal('connection error','','error')
      })
    },
    methods: {
@@ -731,7 +740,11 @@ export default {
         service.getData("/get_vehicle").then((result)=>{
           if(!result.code){
            this.vehicles= JSON.parse(JSON.stringify(result.data).replace(/\:null/gi, "\:\"\""));
+          }else{
+            this.$swal(result.message,'','error')
           }
+        },err=>{
+          this.$swal('connection errror','','error')
         })
       },
       validStep1(){
@@ -765,14 +778,25 @@ export default {
         })
       },
       save(){
+        this.$vs.loading({
+                background: this.backgroundLoading,
+                color: this.colorLoading,
+                container: "#button-with-loading",
+                scale: 0.45
+          })
         service.postData('/add_vehicle',{
             vehicle_id:this.vehicle_id,std_vehicle_id:this.std_vehicle_id,vehicle_book_id:this.vehicle_book_id,possessor_type:this.possessor_type,possessor_organize_name:this.possessor_organize_name,possessor_prefix:this.possessor_prefix,possessor_name:this.possessor_name,possessor_surname:this.possessor_surname,vehicle_check_year:this.vehicle_check_year,driver1:this.driver1,driver2:this.driver2,address:this.address,tambon:this.tambon,amphur:this.amphur,province:this.province,operating_unit_id:this.operating_unit_id,department_type:this.department_type,vehicle_type:this.vehicle_type,vehicle_using_type:this.vehicle_using_type,work_zone:this.work_zone,parking_point:this.parking_point,license_issue_date:this.license_issue_date,license_expire_date:this.license_expire_date,result:this.result,plate_register_date:this.plate_register_date,plate_number:this.plate_number,plate_province:this.plate_province,car_type:this.car_type,vehicle_style:this.vehicle_style,brand_name:this.brand_name,car_model:this.car_model,car_generation_year:this.car_generation_year,car_color:this.car_color,chassis_no:this.chassis_no,chassis_position:this.chassis_position,engine_brand:this.engine_brand,engine_no:this.engine_no,engine_no_position:this.engine_no_position,fuel:this.fuel,gas_no:this.gas_no,piston_count:this.piston_count,piston_displacement:this.piston_displacement,horse_power:this.horse_power,axle_count:this.axle_count,tire_count:this.tire_count,car_weight:this.car_weight,container_weight:this.container_weight,total_weight:this.total_weight,font_img:this.font_img,back_img:this.back_img,left_img:this.left_img,right_img:this.right_img,inner_img:this.inner_img,possesion_date:this.possesion_date,owner_name:this.owner_name,owner_card_id:this.owner_card_id,owner_bod:this.owner_bod,owner_nationality:this.owner_nationality,owner_address:this.owner_address,owner_tel:this.owner_tel,rental_agreement_no:this.rental_agreement_no,rent_date:this.rent_date,draff_date:this.draff_date,edit_date:this.edit_date,data_status:this.data_status,outside_data_reference:this.outside_data_reference,perform_count:this.perform_count,source_data:this.source_data
         }).then((result)=>{
+          this.$vs.loading.close("#button-with-loading > .con-vs-loading")
           if(!result.code){
             this.getData();
             this.forceRerender();
+          }else{
+            this.$swal(result.message,'','error');
           }
         },err=>{
+          this.$vs.loading.close("#button-with-loading > .con-vs-loading")
+          this.$swal('connection error','','error');
           console.log(err);
         })
       },
@@ -797,7 +821,9 @@ export default {
 
           }
         }).then((result) => {
-          if(!result.code){
+          // alert(JSON.stringify(result))
+          if(result.value){
+            if(!result.value.code){
                 this.$swal(
                   this.$t('deleted'),
                   '',
@@ -805,7 +831,10 @@ export default {
                 ).then(result=>{
                    this.getData();
                 })
+              }else{
+                this.$swal(result.value.message,'','error')
               }
+          }
 
         })
       }
@@ -821,14 +850,17 @@ export default {
             if(!result.code){
               this.locations=result.data;
 
+            }else{
+              this.$swal(result.message,'','error')
+
             }
           },err=>{
+               this.$swal('connection error','','error')
             console.log(err);
           })
         },
-    amphur(val){
+      amphur(val){
           this.tambons=this.locations.filter((item)=>item.en_amphur==val);
-          // console.log(card_tambons);
         },
       addNewDataSidebar(val){
         if(!val){
