@@ -279,7 +279,31 @@ export default {
     volunteer_register:"ขึ้นทะเบียนอาสามัคร",
     tambon_amphur_province:"ที่อยู่ปัจจุบัน (ตำบล/อำเภอ/จังหวัด)",
     delete_volunteer_title:"คุณต้องการลบข้อมูลอาสาสมัครนี้ใช่หรือไหม?",
-    choose_position:"เลือกตำแหน่งบนแผ่นที่"
+    choose_position:"เลือกตำแหน่งบนแผ่นที่",
+
+    // ALS_title:"",
+    // ALS_red:"",
+    // ALS_yellow:"",
+    // ALS_green:"",
+    // ALS_cancel:"",
+
+    // ILS_title:"",
+    // ILS_red:"",
+    // ILS_yellow:"",
+    // ILS_green:"",
+    // ILS_cancel:"",
+
+    // BLS_title:"",
+    // BLS_red:"",
+    // BLS_yellow:"",
+    // BLS_green:"",
+    // BLS_cancel:"",
+
+    // FR_title:"",
+    // FR_red:"",
+    // FR_yellow:"",
+    // FR_green:"",
+    // FR_cancel:""
   }
 
 }

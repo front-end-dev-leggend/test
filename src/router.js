@@ -123,8 +123,29 @@ const router = new Router({
                   }
                 },{
                   path: '/registration/hospital_data',
-                  name: 'dashboardAnalytics',
+                  name: 'Hospital',
                   component: () => import('./views/medical-components/hostpital.vue'),
+                  meta: {
+                      rule: 'editor'
+                  }
+                },{
+                  path: '/setting/screening_setting',
+                  name: 'compensate_setting',
+                  component: () => import('./views/medical-components/hostpital.vue'),
+                  meta: {
+                      rule: 'editor'
+                  }
+                },{
+                  path: '/setting/operation_advice',
+                  name: 'compensate_setting',
+                  component: () => import('./views/medical-components/hostpital.vue'),
+                  meta: {
+                      rule: 'editor'
+                  }
+                },{
+                  path: '/setting/compensate_setting',
+                  name: 'compensate_setting',
+                  component: () => import('./views/medical-components/setting/compensate_setting.vue'),
                   meta: {
                       rule: 'editor'
                   }

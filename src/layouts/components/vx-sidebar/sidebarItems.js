@@ -93,7 +93,13 @@ export default [
           name: "operation advice",
           slug: "Vehicle",
           i18n: "operation_advice",
-      }
+      },
+      {
+        url: '/setting/compensate_setting',
+        name: "compensate setting",
+        slug: "Vehicle",
+        i18n: "compensate setting",
+    }
     ]
   },
   {

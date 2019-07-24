@@ -71,21 +71,7 @@
                         <!-- <vs-input type="text" :label="$t('postcode')"  v-model="newHospital.now_postcode" class="w-full" /> -->
                     </div>
                 </div>
-                <div class="vx-row">
-                   <div class="vx-col md:w-1/2 mt-5">
-                        <label>{{$t('medicine')}}</label>
-                        <vs-input v-model="newPharmacy.medicine" class="w-full" />
-                    </div>
-                    <div class="vx-col md:w-1/4 mt-5">
-                        <label>{{$t('medical_supply')}} </label>
-                        <vs-input v-model="newPharmacy.medical_supply" class="w-full" />
-                    </div>
-                    <div class="vx-col md:w-1/4 mt-5">
-                        <label>{{$t('contact_no')}} </label>
-                        <vs-input v-model="newPharmacy.medical_equipment" class="w-full" />
-                    </div>
 
-                </div>
                 <div class="vx-row">
                    <div class="vx-col md:w-1/2 mt-5">
                         <label>{{$t('medicine')}}</label>
