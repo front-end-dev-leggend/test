@@ -311,6 +311,9 @@ export default {
      },
      isInvalid(){
        return this.invalid.name;
+     },
+     locale(){
+       return this.$i18n.locale;
      }
    },
    created(){
@@ -435,8 +438,7 @@ export default {
           }
         },
         locale(val) {
-            this.$i18n.locale = val;
-            alert(val);
+            this.forceRerender();
         },
         now_province(val){
           service.getExternalData('/get_location?province='+val).then((result)=>{

@@ -267,7 +267,7 @@
                           </div>
                   </tab-content>
                   <!-- tab 4 -->
-                   <tab-content :title="$t('danger_disease_histry_data')" icon="feather icon-shopping-cart" class="mb-5" >
+                   <tab-content :title="$t('danger_disease_hostory_data')" icon="feather icon-shopping-cart" class="mb-5" >
                           <div class="mt-3">
                               <div class="vx-row">
                                  <div class="vx-col md:w-1/2 mt-5">

@@ -29,21 +29,21 @@ Vue.use(Router)
 const router = new Router({
     mode: 'history',
     base: process.env.BASE_URL,
-    scrollBehavior () {
+    scrollBehavior() {
         return { x: 0, y: 0 }
     },
     routes: [
 
         {
-    // =============================================================================
-    // MAIN LAYOUT ROUTES
-    // =============================================================================
+            // =============================================================================
+            // MAIN LAYOUT ROUTES
+            // =============================================================================
             path: '',
             component: () => import('./layouts/main/Main.vue'),
             children: [
-        // =============================================================================
-        // Theme Routes
-        // =============================================================================
+                // =============================================================================
+                // Theme Routes
+                // =============================================================================
                 {
                     path: '/',
                     redirect: '/home'
@@ -55,171 +55,171 @@ const router = new Router({
                     meta: {
                         rule: 'editor'
                     }
-                },{
-                  path: '/system_data',
-                  name: 'systemdata',
-                  component: () => import('./views/medical-components/system-data.vue'),
-                  meta: {
-                    breadcrumb: [
-                        { title: 'Home', url: '/' },
-                        { title: 'Card' },
-                        { title: 'Basic Cards', active: true },
-                    ],
-                    pageTitle: 'Basic Cards',
-                    rule: 'editor'
-                  }
-              }, {
-                  path: '/registration/operator',
-                  name: 'dashboardAnalytics',
-                  component: () => import('./views/medical-components/operator.vue'),
-                  meta: {
-                      rule: 'editor'
-                  }
-               },
-               {
-                path: '/registration/vehicle',
-                name: 'dashboardAnalytics',
-                component: () => import('./views/medical-components/vehicle.vue'),
-                meta: {
-                    rule: 'editor'
-                }
-              },
-              {
-                path: '/registration/operation_unit',
-                name: 'dashboardAnalytics',
-                component: () => import('./views/medical-components/operating_unit.vue'),
-                meta: {
-                    rule: 'editor'
-                }
-             },
-             {
-                path: '/registration/proffessional',
-                name: 'dashboardAnalytics',
-                component: () => import('./views/DashboardECommerce.vue'),
-                meta: {
-                    rule: 'editor'
-                }
-            },
-              {
+                }, {
+                    path: '/system_data',
+                    name: 'systemdata',
+                    component: () => import('./views/medical-components/system-data.vue'),
+                    meta: {
+                        breadcrumb: [
+                            { title: 'Home', url: '/' },
+                            { title: 'Card' },
+                            { title: 'Basic Cards', active: true },
+                        ],
+                        pageTitle: 'Basic Cards',
+                        rule: 'editor'
+                    }
+                }, {
+                    path: '/registration/operator',
+                    name: 'dashboardAnalytics',
+                    component: () => import('./views/medical-components/operator.vue'),
+                    meta: {
+                        rule: 'editor'
+                    }
+                },
+                {
+                    path: '/registration/vehicle',
+                    name: 'dashboardAnalytics',
+                    component: () => import('./views/medical-components/vehicle.vue'),
+                    meta: {
+                        rule: 'editor'
+                    }
+                },
+                {
+                    path: '/registration/operation_unit',
+                    name: 'dashboardAnalytics',
+                    component: () => import('./views/medical-components/operating_unit.vue'),
+                    meta: {
+                        rule: 'editor'
+                    }
+                },
+                {
+                    path: '/registration/proffessional',
+                    name: 'dashboardAnalytics',
+                    component: () => import('./views/DashboardECommerce.vue'),
+                    meta: {
+                        rule: 'editor'
+                    }
+                },
+                {
                     path: '/registration/pharmacy',
                     name: 'dashboardAnalytics',
                     component: () => import('./views/medical-components/pharmacy.vue'),
                     meta: {
                         rule: 'editor'
                     }
-                },{
+                }, {
                     path: '/registration/volunteer',
                     name: 'dashboardAnalytics',
                     component: () => import('./views/medical-components/volunteer.vue'),
                     meta: {
                         rule: 'editor'
                     }
-                },{
-                  path: '/registration/patient_data',
-                  name: 'dashboardAnalytics',
-                  component: () => import('./views/medical-components/patient.vue'),
-                  meta: {
-                      rule: 'editor'
-                  }
-                },{
-                  path: '/registration/hospital_data',
-                  name: 'Hospital',
-                  component: () => import('./views/medical-components/hostpital.vue'),
-                  meta: {
-                      rule: 'editor'
-                  }
-                },{
-                  path: '/setting/screening_setting',
-                  name: 'compensate_setting',
-                  component: () => import('./views/medical-components/hostpital.vue'),
-                  meta: {
-                      rule: 'editor'
-                  }
-                },{
-                  path: '/setting/operation_advice',
-                  name: 'compensate_setting',
-                  component: () => import('./views/medical-components/hostpital.vue'),
-                  meta: {
-                      rule: 'editor'
-                  }
-                },{
-                  path: '/setting/compensate_setting',
-                  name: 'compensate_setting',
-                  component: () => import('./views/medical-components/setting/compensate_setting.vue'),
-                  meta: {
-                      rule: 'editor'
-                  }
-                },
-                {
-                      path: '/operation/notification',
-                      name: 'dashboardAnalytics',
-                      component: () => import('./views/DashboardECommerce.vue'),
-                      meta: {
-                          rule: 'editor'
-                      }
-                  },{
-                    path: '/operation/work',
+                }, {
+                    path: '/registration/patient_data',
                     name: 'dashboardAnalytics',
-                    component: () => import('./views/DashboardECommerce.vue'),
+                    component: () => import('./views/medical-components/patient.vue'),
                     meta: {
                         rule: 'editor'
                     }
-                  },{
+                }, {
+                    path: '/registration/hospital_data',
+                    name: 'Hospital',
+                    component: () => import('./views/medical-components/hostpital.vue'),
+                    meta: {
+                        rule: 'editor'
+                    }
+                }, {
+                    path: '/setting/screening_setting',
+                    name: 'screening_setting',
+                    component: () => import('./views/medical-components/setting/screening_setting.vue'),
+                    meta: {
+                        rule: 'editor'
+                    }
+                }, {
+                    path: '/setting/operation_advice',
+                    name: 'operation_advice',
+                    component: () => import('./views/medical-components/setting/operation_advice.vue'),
+                    meta: {
+                        rule: 'editor'
+                    }
+                }, {
+                    path: '/setting/compensate_setting',
+                    name: 'compensate_setting',
+                    component: () => import('./views/medical-components/setting/compensate_setting.vue'),
+                    meta: {
+                        rule: 'editor'
+                    }
+                },
+                {
+                    path: '/operation/emergency_reported',
+                    name: 'EmergencyReported',
+                    component: () => import('./views/medical-components/operation/emergency_reported.vue'),
+                    meta: {
+                        rule: 'editor'
+                    }
+                }, {
+                    path: '/operation/screening_symptom',
+                    name: 'Screening symptom',
+                    component: () => import('./views/medical-components/operation/screening_symptom.vue'),
+                    meta: {
+                        rule: 'editor'
+                    }
+                }, {
                     path: '/operation/manage',
                     name: 'dashboardAnalytics',
                     component: () => import('./views/DashboardECommerce.vue'),
                     meta: {
                         rule: 'editor'
                     }
-                  },{
+                }, {
                     path: '/operation/emergency',
                     name: 'dashboardAnalytics',
                     component: () => import('./views/medical-components/operation/emergency_reported.vue'),
                     meta: {
                         rule: 'editor'
                     }
-                  },{
+                }, {
                     path: '/hospital/hospital_transportation',
                     name: 'dashboardAnalytics',
                     component: () => import('./views/DashboardECommerce.vue'),
                     meta: {
                         rule: 'editor'
                     }
-                  },{
+                }, {
                     path: '/hospital/patient_registration',
                     name: 'dashboardAnalytics',
                     component: () => import('./views/DashboardECommerce.vue'),
                     meta: {
                         rule: 'editor'
                     }
-                  },{
+                }, {
                     path: '/hospital/patient_data',
                     name: 'dashboardAnalytics',
                     component: () => import('./views/DashboardECommerce.vue'),
                     meta: {
                         rule: 'editor'
                     }
-                  },{
+                }, {
                     path: '/hospital/hospital_data',
                     name: 'dashboardAnalytics',
                     component: () => import('./views/DashboardECommerce.vue'),
                     meta: {
                         rule: 'editor'
                     }
-                  },
+                },
                 {
                     path: '/ready_status',
                     name: 'dashboardECommerce',
-                    component: () => import('./views/DashboardECommerce.vue'),
+                    component: () => import('./views/medical-components/ready_status.vue'),
                     meta: {
                         rule: 'admin'
                     }
                 },
 
 
-        // =============================================================================
-        // Application Routes
-        // =============================================================================
+                // =============================================================================
+                // Application Routes
+                // =============================================================================
                 {
                     path: '/apps/todo',
                     name: 'todo',
@@ -267,7 +267,7 @@ const router = new Router({
                     meta: {
                         breadcrumb: [
                             { title: 'Home', url: '/' },
-                            { title: 'eCommerce'},
+                            { title: 'eCommerce' },
                             { title: 'Shop', active: true },
                         ],
                         pageTitle: 'Shop',
@@ -281,7 +281,7 @@ const router = new Router({
                     meta: {
                         breadcrumb: [
                             { title: 'Home', url: '/' },
-                            { title: 'eCommerce', url:'/apps/eCommerce/shop'},
+                            { title: 'eCommerce', url: '/apps/eCommerce/shop' },
                             { title: 'Wish List', active: true },
                         ],
                         pageTitle: 'Wish List',
@@ -295,16 +295,16 @@ const router = new Router({
                     meta: {
                         breadcrumb: [
                             { title: 'Home', url: '/' },
-                            { title: 'eCommerce', url:'/apps/eCommerce/shop'},
+                            { title: 'eCommerce', url: '/apps/eCommerce/shop' },
                             { title: 'Checkout', active: true },
                         ],
                         pageTitle: 'Checkout',
                         rule: 'editor'
                     }
                 },
-        // =============================================================================
-        // UI ELEMENTS
-        // =============================================================================
+                // =============================================================================
+                // UI ELEMENTS
+                // =============================================================================
                 {
                     path: '/ui-elements/data-list/list-view',
                     name: 'dataListListView',
@@ -312,7 +312,7 @@ const router = new Router({
                     meta: {
                         breadcrumb: [
                             { title: 'Home', url: '/' },
-                            { title: 'Data List'},
+                            { title: 'Data List' },
                             { title: 'List View', active: true },
                         ],
                         pageTitle: 'List View',
@@ -326,7 +326,7 @@ const router = new Router({
                     meta: {
                         breadcrumb: [
                             { title: 'Home', url: '/' },
-                            { title: 'Data List'},
+                            { title: 'Data List' },
                             { title: 'Thumb View', active: true },
                         ],
                         pageTitle: 'Thumb View',
@@ -340,7 +340,7 @@ const router = new Router({
                     meta: {
                         breadcrumb: [
                             { title: 'Home', url: '/' },
-                            { title: 'Grid'},
+                            { title: 'Grid' },
                             { title: 'Vuesax', active: true },
                         ],
                         pageTitle: 'Grid',
@@ -354,7 +354,7 @@ const router = new Router({
                     meta: {
                         breadcrumb: [
                             { title: 'Home', url: '/' },
-                            { title: 'Grid'},
+                            { title: 'Grid' },
                             { title: 'Tailwind', active: true },
                         ],
                         pageTitle: 'Tailwind Grid',
@@ -471,9 +471,9 @@ const router = new Router({
                     },
                 },
 
-        // =============================================================================
-        // COMPONENT ROUTES
-        // =============================================================================
+                // =============================================================================
+                // COMPONENT ROUTES
+                // =============================================================================
                 {
                     path: '/components/alert',
                     name: 'componentAlert',
@@ -784,12 +784,12 @@ const router = new Router({
                 },
 
 
-        // =============================================================================
-        // FORMS
-        // =============================================================================
-            // =============================================================================
-            // FORM ELEMENTS
-            // =============================================================================
+                // =============================================================================
+                // FORMS
+                // =============================================================================
+                // =============================================================================
+                // FORM ELEMENTS
+                // =============================================================================
                 {
                     path: '/forms/form-elements/select',
                     name: 'formElementSelect',
@@ -888,7 +888,7 @@ const router = new Router({
                         rule: 'editor'
                     },
                 },
-        // -------------------------------------------------------------------------------------------------------------------------------------------
+                // -------------------------------------------------------------------------------------------------------------------------------------------
                 {
                     path: '/forms/form-layouts',
                     name: 'formsFormLayouts',
@@ -932,23 +932,23 @@ const router = new Router({
                     },
                 },
                 {
-                  path: '/forms/form-input-group',
-                  name: 'extraComponentFormInputGroup',
-                  component: () => import('@/views/forms/form-input-group/FormInputGroup.vue'),
-                  meta: {
-                      breadcrumb: [
-                          { title: 'Home', url: '/' },
-                          { title: 'Extra Components' },
-                          { title: 'Form Input Group', active: true },
-                      ],
-                      pageTitle: 'Form Input Group',
-                      rule: 'editor'
-                  },
+                    path: '/forms/form-input-group',
+                    name: 'extraComponentFormInputGroup',
+                    component: () => import('@/views/forms/form-input-group/FormInputGroup.vue'),
+                    meta: {
+                        breadcrumb: [
+                            { title: 'Home', url: '/' },
+                            { title: 'Extra Components' },
+                            { title: 'Form Input Group', active: true },
+                        ],
+                        pageTitle: 'Form Input Group',
+                        rule: 'editor'
+                    },
                 },
 
-        // =============================================================================
-        // Pages Routes
-        // =============================================================================
+                // =============================================================================
+                // Pages Routes
+                // =============================================================================
                 {
                     path: '/pages/profile',
                     name: 'pageProfile',
@@ -1049,9 +1049,9 @@ const router = new Router({
                     },
                 },
 
-        // =============================================================================
-        // CHARTS & MAPS
-        // =============================================================================
+                // =============================================================================
+                // CHARTS & MAPS
+                // =============================================================================
                 {
                     path: '/charts-and-maps/charts/apex-charts',
                     name: 'extraComponentChartsApexCharts',
@@ -1111,9 +1111,9 @@ const router = new Router({
 
 
 
-        // =============================================================================
-        // EXTENSIONS
-        // =============================================================================
+                // =============================================================================
+                // EXTENSIONS
+                // =============================================================================
                 {
                     path: '/extensions/select',
                     name: 'extraComponentSelect',
@@ -1314,16 +1314,16 @@ const router = new Router({
                 },
             ],
         },
-    // =============================================================================
-    // FULL PAGE LAYOUTS
-    // =============================================================================
+        // =============================================================================
+        // FULL PAGE LAYOUTS
+        // =============================================================================
         {
             path: '',
             component: () => import('@/layouts/full-page/FullPage.vue'),
             children: [
-        // =============================================================================
-        // PAGES
-        // =============================================================================
+                // =============================================================================
+                // PAGES
+                // =============================================================================
                 {
                     path: '/callback',
                     name: 'authCallback',
@@ -1423,8 +1423,8 @@ const router = new Router({
 })
 
 router.afterEach(() => {
-  // Remove initial loading
-  const appLoading = document.getElementById('loading-bg')
+    // Remove initial loading
+    const appLoading = document.getElementById('loading-bg')
     if (appLoading) {
         appLoading.style.display = "none";
     }

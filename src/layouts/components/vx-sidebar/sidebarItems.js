@@ -74,13 +74,55 @@ export default [
       }
     ]
   },
+
   {
     url: null,
-    name: "Setting",
-    slug: "Setting",
+    name: "Operation",
+    slug: "Operation",
+    icon: "DropletIcon",
+    i18n: "operation",
+    submenu: [
+      {
+        url: '/operation/emergency_reported',
+        name: "Emergency reported",
+        slug: "Emergency reported",
+        i18n: "emergency_reported",
+      },
+      {
+        url: '/operation/screening_symptom',
+        name: "Screening symptom",
+        slug: "Screening symptom",
+        i18n: "screening_symptom",
+      },
+      {
+        url: '/operation/getjob',
+        name: "getjob",
+        slug: "getjob",
+        i18n: "getjob",
+      }, {
+        url: '/operation/command',
+        name: "command",
+        slug: "command",
+        i18n: "command",
+      }, {
+        url: '/operation/control',
+        name: "control",
+        slug: "control",
+        i18n: "control",
+      }, {
+        url: '/operation/call',
+        name: "Callcenter",
+        slug: "callcenter",
+        i18n: "callcenter",
+      }
+    ]
+  },
+  {
+    url: null,
+    name: "setting",
+    slug: "setting",
     icon: "FileTextIcon",
-
-    i18n: "Setting",
+    i18n: "setting",
     submenu: [
       {
         url: '/setting/screening_setting',
@@ -98,72 +140,8 @@ export default [
         url: '/setting/compensate_setting',
         name: "compensate setting",
         slug: "Vehicle",
-        i18n: "compensate setting",
+        i18n: "compensate_setting",
     }
-    ]
-  },
-  {
-    url: null,
-    name: "Operation",
-    slug: "Operation",
-    icon: "DropletIcon",
-    i18n: "operation",
-    submenu: [
-      {
-        url: '/operation/notification',
-        name: "Notification",
-        slug: "Notification",
-        i18n: "notification",
-      },
-      {
-          url: '/operation/work',
-          name: "Work",
-          slug: "Work",
-          i18n: "work",
-      },
-      {
-        url: '/operation/manage',
-        name: "Manage",
-        slug: "Manage",
-        i18n: "manage",
-      },{
-        url: '/operation/emergency',
-        name: "Emergency",
-        slug: "Emergency",
-        i18n: "emergency",
-      }
-    ]
-  },
-  {
-    url: null,
-    name: "Hospital",
-    slug: "Hospital",
-    icon: "CreditCardIcon",
-    i18n: "hospital",
-    submenu: [
-      {
-        url: '/hospital/hospital_transportation',
-        name: "Hospital Transportation",
-        slug: "Hospital Transportation",
-        i18n: "hospital_transportation",
-      },
-      {
-          url: '/hospital/patient_registration',
-          name: "Patient Registration",
-          slug: "Patient Registration",
-          i18n: "patient_registration",
-      },
-      {
-        url: '/hospital/patient_data',
-        name: "Patient Data",
-        slug: "Patient Data",
-        i18n: "patient_data",
-      },{
-        url: '/hospital/hospital_data',
-        name: "Hospital Data",
-        slug: "Hospital Data",
-        i18n: "hospital_data",
-      }
     ]
   },
   {

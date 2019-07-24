@@ -59,6 +59,26 @@
 
                 Suspendisse aliquet condimentum diam, sed aliquam nisl dapibus et. Aliquam euismod ullamcorper dolor eu imperdiet. Nullam eget odio at magna gravida suscipit sed vestibulum odio. Maecenas porta elit vel lectus molestie, eget aliquam enim feugiat. Vivamus nec faucibus nisl. Nunc venenatis tempus finibus.
             </vs-collapse-item>
+            <vs-collapse-item >
+
+                <div slot="header">{{$t("screening_advice")}}</div>
+
+                <div class="mt-5" style="overflow:scroll">
+                  <div v-html="advices.screening"></div>
+                </div>
+            </vs-collapse-item>
+             <vs-collapse-item>
+                <div slot="header">{{$t("command_advice")}}</div>
+                <div class="mt-5">
+                  <div v-html="advices.command"></div>
+                </div>
+            </vs-collapse-item>
+            <vs-collapse-item style="overflow:scroll">
+                <div slot="header">{{$t("reported_advice")}}</div>
+                <div class="mt-5">
+                  <div v-html="advices.reported"></div>
+                </div>
+            </vs-collapse-item>
         </vs-collapse>
 			</vx-card>
   </div>
@@ -67,8 +87,33 @@
 </template>
 
 <script>
-export default {
 
+import service from '@/service/service';
+export default {
+    components: {
+      // quillEditor,
+    },
+    data(){
+      return{
+        advices:{},
+        content:"",
+      }
+    },
+    computed:{
+
+    },
+    created(){
+        service.getData("get_advice").then((result)=>{
+          var {screening_advice,command_advice,reported_advice}=result.data[0];
+          this.advices={screening:screening_advice,command:command_advice,reported:reported_advice};
+        })
+    },
+    methods:{
+
+    },
+    watch:{
+
+    }
 }
 </script>
 

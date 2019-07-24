@@ -23,9 +23,6 @@
 
                     <template slot-scope="{data}">
                       <vs-tr :data="tr" :key="index" v-for="(tr, index) in data">
-
-
-
                         <vs-td :data="tr.operating_unit_id">
                           {{ tr.operating_unit_id }}
                         </vs-td>

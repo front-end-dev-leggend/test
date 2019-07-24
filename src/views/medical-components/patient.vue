@@ -300,7 +300,7 @@
                           </div>
                   </tab-content>
                   <!-- tab 4 -->
-                   <tab-content :title="$t('danger_disease_histry_data')" icon="feather icon-shopping-cart" class="mb-5" >
+                   <tab-content :title="$t('danger_disease_hostory_data')" icon="feather icon-shopping-cart" class="mb-5" >
                           <div class="mt-3">
                               <div class="vx-row">
                                  <div class="vx-col md:w-1/2 mt-5">
@@ -558,7 +558,43 @@ export default {
        }
      })
      },
+       delete_patient(patient){
+       this.$swal({
+          title:this.$t('delete_patient_title'),
+          text: this.$t('delete_text'),
+          type: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          cancelButtonText:this.$t('cancel'),
+          confirmButtonText:this.$t('confirm_delete'),
+          showLoaderOnConfirm: true,
+          preConfirm:()=>{
+            return service.deleteData(`delete_patient?patient_id=${patient.patient_id}`).then((result)=>{
 
+              return result;
+            },err=>{
+              return {code:true,message:"connection error"}
+            })
+
+          }
+        }).then((result) => {
+          if(result.value){
+             if(!result.value.code){
+                this.$swal(
+                  this.$t('deleted'),
+                  '',
+                  'success'
+                ).then(result=>{
+                   this.getData();
+                })
+              }else{
+                this.$swal(result.value.message,'','error');
+              }
+          }
+
+        })
+     },
       forceRerender() {
         // Remove my-component from the DOM
         this.renderComponent = false;
@@ -618,7 +654,7 @@ export default {
       }
     },
   watch: {
- 
+
         addNewDataSidebar(val){
           if(val==false){
             this.getData();

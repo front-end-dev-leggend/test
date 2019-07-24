@@ -326,7 +326,38 @@
                   <vs-td :data="tr.time">{{ tr.time }}</vs-td>
                   <vs-td :data="tr.location_name">{{ tr.location_name }}</vs-td>
                   <vs-td :data="tr.receiver_name">{{ tr.receiver_name }}</vs-td>
-                  <vs-td></vs-td>
+                  <vs-td>
+                    <div class="vx-row">
+                      <div class="md:w-1/5">
+                        <vx-tooltip :text="$t('reported')"  position="left"> 
+                          <div class="h-4 w-4 rounded-full bg-success"></div>
+                        </vx-tooltip>
+                      </div>
+                      <div class="md:w-1/5">
+                        <vx-tooltip :text="$t('screening')"  position="left">
+                          <div class="h-4 w-4 rounded-full" :class="checkstatus(tr.screening_id)"></div>
+                        </vx-tooltip>
+                      </div>
+                      <div class="md:w-1/5">
+                        <vx-tooltip :text="$t('command')"  position="left">
+                          <div
+                            class="h-4 w-4 rounded-full"
+                            :class="checkstatus(tr.operation_unit_id)"
+                          ></div>
+                        </vx-tooltip>
+                      </div>
+                      <div class="md:w-1/5">
+                        <vx-tooltip :text="$t('getjob')"  position="left">
+                          <div class="h-4 w-4 rounded-full" :class="checkstatus(tr.operation_id)"></div>
+                        </vx-tooltip>
+                      </div>
+                      <div class="md:w-1/5">
+                        <vx-tooltip :text="$t('finish')"  position="left">
+                          <div class="h-4 w-4 rounded-full" :class="checkstatus(tr.cure_result)"></div>
+                        </vx-tooltip>
+                      </div>
+                    </div>
+                  </vs-td>
                   <vs-td :data="tr.reporter_tel">{{ tr.reporter_tel }}</vs-td>
                   <vs-td>
                     <feather-icon
@@ -869,7 +900,7 @@ export default {
     update() {
       this.submitted = true;
       if (!this.isInvalid2) {
-        this.popupActive = false
+        this.popupActive = false;
         this.$swal({
           title: this.$t("update_emergency?"),
           type: "warning",
@@ -878,7 +909,7 @@ export default {
           cancelButtonText: this.$t("cancel"),
           allowOutsideClick: false
         }).then(result => {
-          this.popupActive = true
+          this.popupActive = true;
           if (result.value) {
             service
               .postData("update_emergency_reported", this.edit_bodydata)
@@ -952,6 +983,12 @@ export default {
     },
     test(x) {
       console.log(x.reporter_type);
+    },
+    checkstatus(value) {
+      if (value == null || value == "") {
+        return "gray";
+      }
+      return "bg-success";
     }
   },
   watch: {
@@ -1003,5 +1040,8 @@ button {
 .error {
   color: red;
   font-size: 80%;
+}
+.gray {
+  background-color: #948d8d;
 }
 </style>
